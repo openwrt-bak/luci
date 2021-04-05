@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-19 13:29+0000\n"
-"Last-Translator: xiazhang <xz@xia.plus>\n"
+"PO-Revision-Date: 2021-03-14 05:16+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "openwrt/luciapplicationsshadowsocks-libev/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.11\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:45
 msgid "-- instance type --"
@@ -117,7 +117,7 @@ msgstr "启用/禁用"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:142
 msgid "Enabled"
-msgstr "已启用"
+msgstr "启用"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/rules.js:69
 msgid "Extra arguments"
@@ -157,7 +157,7 @@ msgstr "常规设置"
 
 #: applications/luci-app-shadowsocks-libev/root/usr/share/rpcd/acl.d/luci-app-shadowsocks-libev.json:3
 msgid "Grant service list access to LuCI app shadowsocks-libev"
-msgstr ""
+msgstr "授予服务列表访问LuCI应用程序shadowsocks-libev的权限"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/shadowsocks-libev.js:192
 msgid "IPv6 First"
@@ -201,11 +201,11 @@ msgstr "密钥（base64）"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:93
 msgid "Local IPv4 address"
-msgstr ""
+msgstr "本机 IPv4 地址"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:98
 msgid "Local IPv6 address"
-msgstr ""
+msgstr "本机 IPv6 地址"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:26
 #: applications/luci-app-shadowsocks-libev/root/usr/share/luci/menu.d/luci-app-shadowsocks-libev.json:14
@@ -340,15 +340,15 @@ msgstr "转发"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:94
 msgid "The IPv4 address ss-server will initiate IPv4 connections from"
-msgstr ""
+msgstr "ss-server 发起 IPv4 连接的IPv4 地址"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:99
 msgid "The IPv6 address ss-server will initiate IPv6 connections from"
-msgstr ""
+msgstr "ss-server 发起IPv6 连接的IPv6 地址"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:89
 msgid "The address ss-server will initiate connections from"
-msgstr ""
+msgstr "ss-server 发起连接的地址"
 
 #: applications/luci-app-shadowsocks-libev/htdocs/luci-static/resources/view/shadowsocks-libev/instances.js:107
 msgid "The address ss-tunnel will forward traffic to"

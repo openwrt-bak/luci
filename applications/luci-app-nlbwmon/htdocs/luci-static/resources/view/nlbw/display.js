@@ -346,12 +346,12 @@ return view.extend({
 
 			trafData.push({
 				value: rec.rx_bytes + rec.tx_bytes,
-				label: ["%s: %%.2mB".format(key), cell]
+				label: ["%s: %%1024.2mB".format(key), cell]
 			});
 
 			connData.push({
 				value: rec.conns,
-				label: ["%s: %%.2m".format(key), cell]
+				label: ["%s: %%1000.2m".format(key), cell]
 			});
 
 			rx_total += rec.rx_bytes;
@@ -404,12 +404,12 @@ return view.extend({
 
 			rxData.push({
 				value: rec.rx_bytes,
-				label: ["%s: %%.2mB".format(rec.layer7 || _('other')), cell]
+				label: ["%s: %%1024.2mB".format(rec.layer7 || _('other')), cell]
 			});
 
 			txData.push({
 				value: rec.tx_bytes,
-				label: ["%s: %%.2mB".format(rec.layer7 || _('other')), cell]
+				label: ["%s: %%1024.2mB".format(rec.layer7 || _('other')), cell]
 			});
 
 			if (rec.layer7) {
@@ -533,14 +533,14 @@ return view.extend({
 		if (rx4_total > 0 || tx4_total > 0)
 			shareData.push({
 				value: rx4_total + tx4_total,
-				label: ["IPv4: %.2mB"],
+				label: ["IPv4: %1024.2mB"],
 				color: 'hsl(140, 100%, 50%)'
 		        });
 
 		if (rx6_total > 0 || tx6_total > 0)
 			shareData.push({
 				value: rx6_total + tx6_total,
-				label: ["IPv6: %.2mB"],
+				label: ["IPv6: %1024.2mB"],
 				color: 'hsl(180, 100%, 50%)'
 			});
 
@@ -609,14 +609,14 @@ return view.extend({
 					])
 				])
 			]),
-			E('div', { 'class': 'table' }, [
-				E('div', { 'class': 'tr table-titles' }, [
-					E('div', { 'class': 'th' }, label || col),
-					E('div', { 'class': 'th' }, _('Conn.')),
-					E('div', { 'class': 'th' }, _('Down. (Bytes)')),
-					E('div', { 'class': 'th' }, _('Down. (Pkts.)')),
-					E('div', { 'class': 'th' }, _('Up. (Bytes)')),
-					E('div', { 'class': 'th' }, _('Up. (Pkts.)')),
+			E('table', { 'class': 'table' }, [
+				E('tr', { 'class': 'tr table-titles' }, [
+					E('th', { 'class': 'th' }, label || col),
+					E('th', { 'class': 'th' }, _('Conn.')),
+					E('th', { 'class': 'th' }, _('Down. (Bytes)')),
+					E('th', { 'class': 'th' }, _('Down. (Pkts.)')),
+					E('th', { 'class': 'th' }, _('Up. (Bytes)')),
+					E('th', { 'class': 'th' }, _('Up. (Pkts.)')),
 				])
 			])
 		]);
@@ -841,18 +841,18 @@ return view.extend({
 						])
 					]),
 
-					E('div', { 'class': 'table', 'id': 'host-data' }, [
-						E('div', { 'class': 'tr table-titles' }, [
-							E('div', { 'class': 'th left hostname' }, [ _('Host') ]),
-							E('div', { 'class': 'th right' }, [ _('MAC') ]),
-							E('div', { 'class': 'th right' }, [ _('Connections') ]),
-							E('div', { 'class': 'th right' }, [ _('Download (Bytes)') ]),
-							E('div', { 'class': 'th right' }, [ _('Download (Packets)') ]),
-							E('div', { 'class': 'th right' }, [ _('Upload (Bytes)') ]),
-							E('div', { 'class': 'th right' }, [ _('Upload (Packets)') ]),
+					E('table', { 'class': 'table', 'id': 'host-data' }, [
+						E('tr', { 'class': 'tr table-titles' }, [
+							E('th', { 'class': 'th left hostname' }, [ _('Host') ]),
+							E('th', { 'class': 'th right' }, [ _('MAC') ]),
+							E('th', { 'class': 'th right' }, [ _('Connections') ]),
+							E('th', { 'class': 'th right' }, [ _('Download (Bytes)') ]),
+							E('th', { 'class': 'th right' }, [ _('Download (Packets)') ]),
+							E('th', { 'class': 'th right' }, [ _('Upload (Bytes)') ]),
+							E('th', { 'class': 'th right' }, [ _('Upload (Packets)') ]),
 						]),
-						E('div', { 'class': 'tr placeholder' }, [
-							E('div', { 'class': 'td' }, [
+						E('tr', { 'class': 'tr placeholder' }, [
+							E('td', { 'class': 'td' }, [
 								E('em', { 'class': 'spinning' }, [ _('Collecting data...') ])
 							])
 						])
@@ -881,17 +881,17 @@ return view.extend({
 						])
 					]),
 
-					E('div', { 'class': 'table', 'id': 'layer7-data' }, [
-						E('div', { 'class': 'tr table-titles' }, [
-							E('div', { 'class': 'th left' }, [ _('Application') ]),
-							E('div', { 'class': 'th right' }, [ _('Connections') ]),
-							E('div', { 'class': 'th right' }, [ _('Download (Bytes)') ]),
-							E('div', { 'class': 'th right' }, [ _('Download (Packets)') ]),
-							E('div', { 'class': 'th right' }, [ _('Upload (Bytes)') ]),
-							E('div', { 'class': 'th right' }, [ _('Upload (Packets)') ]),
+					E('table', { 'class': 'table', 'id': 'layer7-data' }, [
+						E('tr', { 'class': 'tr table-titles' }, [
+							E('th', { 'class': 'th left' }, [ _('Application') ]),
+							E('th', { 'class': 'th right' }, [ _('Connections') ]),
+							E('th', { 'class': 'th right' }, [ _('Download (Bytes)') ]),
+							E('th', { 'class': 'th right' }, [ _('Download (Packets)') ]),
+							E('th', { 'class': 'th right' }, [ _('Upload (Bytes)') ]),
+							E('th', { 'class': 'th right' }, [ _('Upload (Packets)') ]),
 						]),
-						E('div', { 'class': 'tr placeholder' }, [
-							E('div', { 'class': 'td' }, [
+						E('tr', { 'class': 'tr placeholder' }, [
+							E('td', { 'class': 'td' }, [
 								E('em', { 'class': 'spinning' }, [ _('Collecting data...') ])
 							])
 						])
@@ -920,18 +920,18 @@ return view.extend({
 						])
 					]),
 
-					E('div', { 'class': 'table', 'id': 'ipv6-data' }, [
-						E('div', { 'class': 'tr table-titles' }, [
-							E('div', { 'class': 'th left' }, [ _('Host') ]),
-							E('div', { 'class': 'th right' }, [ _('MAC') ]),
-							E('div', { 'class': 'th double right hide-xs' }, [ _('Family') ]),
-							E('div', { 'class': 'th double right' }, [ _('Download (Bytes)') ]),
-							E('div', { 'class': 'th double right' }, [ _('Download (Packets)') ]),
-							E('div', { 'class': 'th double right' }, [ _('Upload (Bytes)') ]),
-							E('div', { 'class': 'th double right' }, [ _('Upload (Packets)') ]),
+					E('table', { 'class': 'table', 'id': 'ipv6-data' }, [
+						E('tr', { 'class': 'tr table-titles' }, [
+							E('th', { 'class': 'th left' }, [ _('Host') ]),
+							E('th', { 'class': 'th right' }, [ _('MAC') ]),
+							E('th', { 'class': 'th double right hide-xs' }, [ _('Family') ]),
+							E('th', { 'class': 'th double right' }, [ _('Download (Bytes)') ]),
+							E('th', { 'class': 'th double right' }, [ _('Download (Packets)') ]),
+							E('th', { 'class': 'th double right' }, [ _('Upload (Bytes)') ]),
+							E('th', { 'class': 'th double right' }, [ _('Upload (Packets)') ]),
 						]),
-						E('div', { 'class': 'tr placeholder' }, [
-							E('div', { 'class': 'td' }, [
+						E('tr', { 'class': 'tr placeholder' }, [
+							E('td', { 'class': 'td' }, [
 								E('em', { 'class': 'spinning' }, [ _('Collecting data...') ])
 							])
 						])

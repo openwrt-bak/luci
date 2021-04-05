@@ -334,7 +334,7 @@ return baseclass.extend({
 		var cmdline = [
 			'graph', '-', '-a', 'PNG',
 			'-s', 'NOW-%s'.format(timespan || this.opts.timespan),
-			'-e', 'NOW-60',
+			'-e', 'NOW-15',
 			'-w', width || this.opts.width,
 			'-h', height || this.opts.height
 		];
@@ -376,7 +376,7 @@ return baseclass.extend({
 
 		function __def(source) {
 			var inst = source.sname,
-			    rrd  = source.rrd.replace(/[\\:]/g, '\\$&'),
+			    rrd  = source.rrd,
 			    ds   = source.ds || 'value';
 
 			_args.push(

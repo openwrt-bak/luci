@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-09-23 14:41+0000\n"
-"Last-Translator: Ataberk Özen <ataberkozen123@gmail.com>\n"
+"PO-Revision-Date: 2021-01-03 17:29+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsacme/tr/>\n"
 "Language: tr\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:17
 msgid "ACME certificates"
@@ -32,7 +32,7 @@ msgstr "Hesap e-postası"
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:48
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Gelişmiş Ayarlar"
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:42
 msgid "Certificate config"
@@ -110,7 +110,7 @@ msgstr "Etkin"
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:46
 msgid "General Settings"
-msgstr ""
+msgstr "Genel Ayarlar"
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:54
 msgid ""
@@ -201,12 +201,13 @@ msgid ""
 "address. Once configured, issuing certificates can take a while. Check the "
 "logs for progress and any errors."
 msgstr ""
-"ACME (Letsencrypt) otomatik sertifika kurulumunu ayarlar. Basitçe web "
-"arayüzünde Letsencrypt tarafından verilen sertifikaları kullanmak için "
-"doldurun. Sertifikadaki alan adlarının router'ın açık ip adresine bağlı "
-"olması gerektiğini unutmayın. Ayarlandıktan sonra sertifikaların çalışır "
-"duruma gelmesi zaman alabilir. İlerleme durumuna ve hatalara bakmak için "
-"günlüğü kontrol edin."
+"Bu, ACME (Letsencrypt) otomatik sertifika kurulumunu yapılandırır. "
+"Yönlendiricinin web arayüzünün Letsencrypt tarafından verilen sertifikalarla "
+"yapılandırılması için bunu doldurmanız yeterlidir. Sertifikadaki etki alanı "
+"adlarının, yönlendiricinin genel IP adresini gösterecek şekilde önceden "
+"yapılandırılmış olması gerektiğini unutmayın. Yapılandırıldıktan sonra "
+"sertifikaların verilmesi biraz zaman alabilir. İlerleme ve herhangi bir hata "
+"için günlük kayıtlarına bakın."
 
 #: applications/luci-app-acme/htdocs/luci-static/resources/view/acme.js:108
 msgid ""

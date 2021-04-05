@@ -86,7 +86,8 @@ return network.registerProtocol('qmi', {
 		o.password = true;
 
 		if (L.hasSystemFeature('ipv6')) {
-			o = s.taboption('advanced', form.Flag, 'ipv6', _('Enable IPv6 negotiation'));
+			o = s.taboption('advanced', form.Flag, 'ppp_ipv6', _('Enable IPv6 negotiation'));
+			o.ucioption = 'ipv6';
 			o.default = o.disabled;
 		}
 
@@ -103,5 +104,22 @@ return network.registerProtocol('qmi', {
 		o.value('ipv4', 'IPv4');
 		o.value('ipv6', 'IPv6');
 		o.default = 'ipv4v6';
+
+		o = s.taboption('advanced', form.Flag, 'defaultroute',
+			_('Use default gateway'),
+			_('If unchecked, no default route is configured'));
+		o.default = o.enabled;
+
+		o = s.taboption('advanced', form.Value, 'metric',
+			_('Use gateway metric'));
+			o.placeholder = '0';
+		o.datatype = 'uinteger';
+		o.depends('defaultroute', '1');
+
+		o = s.taboption('advanced', form.Flag, 'peerdns',
+			_('Use DNS servers advertised by peer'),
+			_('If unchecked, the advertised DNS server addresses are ignored'));
+		o.default = o.enabled;
+
 	}
 });

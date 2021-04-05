@@ -285,7 +285,7 @@ duid2ea(const char *duid)
 	switch (len) {
 	case 28:
 		if (!strncmp(duid, "00010001", 8))
-			p = duid + 8;
+			p = duid + 16;
 
 		break;
 
@@ -315,9 +315,12 @@ duid2ea(const char *duid)
 
 
 static struct {
-	FILE *dnsmasq_file;
-	FILE *odhcpd_file;
 	time_t now;
+	size_t num, off;
+	struct {
+		FILE *fh;
+		bool odhcpd;
+	} *files;
 } lease_state = { };
 
 struct lease_entry {
@@ -333,13 +336,41 @@ struct lease_entry {
 	} addr[10];
 };
 
-static char *
-find_leasefile(struct uci_context *uci, const char *section)
+static bool
+add_leasefile(const char *path, bool is_odhcpd)
+{
+	void *ptr;
+	FILE *fh;
+
+	fh = fopen(path, "r");
+
+	if (!fh)
+		return false;
+
+	ptr = realloc(lease_state.files, sizeof(*lease_state.files) * (lease_state.num + 1));
+
+	if (!ptr) {
+		fclose(fh);
+
+		return false;
+	}
+
+	lease_state.files = ptr;
+	lease_state.files[lease_state.num].fh = fh;
+	lease_state.files[lease_state.num].odhcpd = is_odhcpd;
+	lease_state.num++;
+
+	return true;
+}
+
+static bool
+find_leasefiles(struct uci_context *uci, bool is_odhcpd)
 {
 	struct uci_ptr ptr = { .package = "dhcp" };
 	struct uci_package *pkg = NULL;
 	struct uci_section *s;
 	struct uci_element *e;
+	bool found = false;
 
 	pkg = uci_lookup_package(uci, ptr.package);
 
@@ -353,7 +384,7 @@ find_leasefile(struct uci_context *uci, const char *section)
 	uci_foreach_element(&pkg->sections, e) {
 		s = uci_to_section(e);
 
-		if (strcmp(s->type, section))
+		if (strcmp(s->type, is_odhcpd ? "odhcpd" : "dnsmasq"))
 			continue;
 
 		ptr.flags = 0;
@@ -370,31 +401,30 @@ find_leasefile(struct uci_context *uci, const char *section)
 		if (ptr.o->type != UCI_TYPE_STRING)
 			continue;
 
-		return ptr.o->v.string;
+		if (add_leasefile(ptr.o->v.string, is_odhcpd))
+			found = true;
 	}
 
-	return NULL;
+	return found;
 }
 
 static void
 lease_close(void)
 {
-	if (lease_state.dnsmasq_file) {
-		fclose(lease_state.dnsmasq_file);
-		lease_state.dnsmasq_file = NULL;
-	}
+	while (lease_state.num > 0)
+		fclose(lease_state.files[--lease_state.num].fh);
 
-	if (lease_state.odhcpd_file) {
-		fclose(lease_state.odhcpd_file);
-		lease_state.odhcpd_file = NULL;
-	}
+	free(lease_state.files);
+
+	lease_state.files = NULL;
+	lease_state.num = 0;
+	lease_state.off = 0;
 }
 
 static void
 lease_open(void)
 {
 	struct uci_context *uci;
-	char *p;
 
 	lease_close();
 
@@ -405,11 +435,11 @@ lease_open(void)
 
 	lease_state.now = time(NULL);
 
-	p = find_leasefile(uci, "dnsmasq");
-	lease_state.dnsmasq_file = fopen(p ? p : "/tmp/dhcp.leases", "r");
+	if (!find_leasefiles(uci, false))
+		add_leasefile("/tmp/dhcp.leases", false);
 
-	p = find_leasefile(uci, "odhcpd");
-	lease_state.odhcpd_file = fopen(p ? p : "/tmp/hosts/odhcpd", "r");
+	if (!find_leasefiles(uci, true))
+		add_leasefile("/tmp/hosts/odhcpd", true);
 
 	uci_free_context(uci);
 }
@@ -424,133 +454,126 @@ lease_next(void)
 
 	memset(&e, 0, sizeof(e));
 
-	if (lease_state.dnsmasq_file) {
-		while (fgets(e.buf, sizeof(e.buf), lease_state.dnsmasq_file)) {
-			p = strtok(e.buf, " \t\n");
+	while (lease_state.off < lease_state.num) {
+		while (fgets(e.buf, sizeof(e.buf), lease_state.files[lease_state.off].fh)) {
+			if (lease_state.files[lease_state.off].odhcpd) {
+				strtok(e.buf, " \t\n"); /* # */
+				strtok(NULL, " \t\n"); /* iface */
 
-			if (!p)
-				continue;
+				e.duid = strtok(NULL, " \t\n"); /* duid */
 
-			n = strtol(p, NULL, 10);
+				if (!e.duid)
+					continue;
 
-			if (n > lease_state.now)
-				e.expire = n - lease_state.now;
-			else if (n > 0)
-				e.expire = 0;
-			else
-				e.expire = -1;
+				p = strtok(NULL, " \t\n"); /* iaid */
 
-			p = strtok(NULL, " \t\n");
+				if (p)
+					e.af = strcmp(p, "ipv4") ? AF_INET6 : AF_INET;
+				else
+					continue;
 
-			if (!p)
-				continue;
+				e.hostname = strtok(NULL, " \t\n"); /* name */
 
-			ea = ether_aton(p);
+				if (!e.hostname)
+					continue;
 
-			p = strtok(NULL, " \t\n");
+				p = strtok(NULL, " \t\n"); /* ts */
 
-			if (p && inet_pton(AF_INET6, p, &e.addr[0].in6)) {
-				e.af = AF_INET6;
-				e.n_addr = 1;
-			}
-			else if (p && inet_pton(AF_INET, p, &e.addr[0].in)) {
-				e.af = AF_INET;
-				e.n_addr = 1;
-			}
-			else {
-				continue;
-			}
+				if (!p)
+					continue;
 
-			if (!ea && e.af != AF_INET6)
-				continue;
+				n = strtol(p, NULL, 10);
 
-			e.hostname = strtok(NULL, " \t\n");
-			e.duid     = strtok(NULL, " \t\n");
+				if (n > lease_state.now)
+					e.expire = n - lease_state.now;
+				else if (n >= 0)
+					e.expire = 0;
+				else
+					e.expire = -1;
 
-			if (!e.hostname || !e.duid)
-				continue;
+				strtok(NULL, " \t\n"); /* id */
+				strtok(NULL, " \t\n"); /* length */
 
-			if (!strcmp(e.hostname, "*"))
-				e.hostname = NULL;
+				for (e.n_addr = 0, p = strtok(NULL, "/ \t\n");
+				     e.n_addr < ARRAY_SIZE(e.addr) && p != NULL;
+				     p = strtok(NULL, "/ \t\n")) {
+					if (inet_pton(e.af, p, &e.addr[e.n_addr].in6))
+						e.n_addr++;
+				}
 
-			if (!strcmp(e.duid, "*"))
-				e.duid = NULL;
-
-			if (!ea && e.duid)
 				ea = duid2ea(e.duid);
 
-			if (ea)
-				e.mac = *ea;
+				if (ea)
+					e.mac = *ea;
 
-			return &e;
-		}
+				if (!strcmp(e.hostname, "-"))
+					e.hostname = NULL;
 
-		fclose(lease_state.dnsmasq_file);
-		lease_state.dnsmasq_file = NULL;
-	}
+				if (!strcmp(e.duid, "-"))
+					e.duid = NULL;
+			}
+			else {
+				p = strtok(e.buf, " \t\n");
 
-	if (lease_state.odhcpd_file) {
-		while (fgets(e.buf, sizeof(e.buf), lease_state.odhcpd_file)) {
-			strtok(e.buf, " \t\n"); /* # */
-			strtok(NULL, " \t\n"); /* iface */
+				if (!p)
+					continue;
 
-			e.duid = strtok(NULL, " \t\n"); /* duid */
+				n = strtol(p, NULL, 10);
 
-			if (!e.duid)
-				continue;
+				if (n > lease_state.now)
+					e.expire = n - lease_state.now;
+				else if (n > 0)
+					e.expire = 0;
+				else
+					e.expire = -1;
 
-			p = strtok(NULL, " \t\n"); /* iaid */
+				p = strtok(NULL, " \t\n");
 
-			if (p)
-				e.af = strcmp(p, "ipv4") ? AF_INET6 : AF_INET;
-			else
-				continue;
+				if (!p)
+					continue;
 
-			e.hostname = strtok(NULL, " \t\n"); /* name */
+				ea = ether_aton(p);
 
-			if (!e.hostname)
-				continue;
+				p = strtok(NULL, " \t\n");
 
-			p = strtok(NULL, " \t\n"); /* ts */
+				if (p && inet_pton(AF_INET6, p, &e.addr[0].in6)) {
+					e.af = AF_INET6;
+					e.n_addr = 1;
+				}
+				else if (p && inet_pton(AF_INET, p, &e.addr[0].in)) {
+					e.af = AF_INET;
+					e.n_addr = 1;
+				}
+				else {
+					continue;
+				}
 
-			if (!p)
-				continue;
+				if (!ea && e.af != AF_INET6)
+					continue;
 
-			n = strtol(p, NULL, 10);
+				e.hostname = strtok(NULL, " \t\n");
+				e.duid     = strtok(NULL, " \t\n");
 
-			if (n > lease_state.now)
-				e.expire = n - lease_state.now;
-			else if (n >= 0)
-				e.expire = 0;
-			else
-				e.expire = -1;
+				if (!e.hostname || !e.duid)
+					continue;
 
-			strtok(NULL, " \t\n"); /* id */
-			strtok(NULL, " \t\n"); /* length */
+				if (!strcmp(e.hostname, "*"))
+					e.hostname = NULL;
 
-			for (e.n_addr = 0, p = strtok(NULL, "/ \t\n");
-			     e.n_addr < ARRAY_SIZE(e.addr) && p != NULL;
-			     p = strtok(NULL, "/ \t\n")) {
-				if (inet_pton(e.af, p, &e.addr[e.n_addr].in6))
-					e.n_addr++;
+				if (!strcmp(e.duid, "*"))
+					e.duid = NULL;
+
+				if (!ea && e.duid)
+					ea = duid2ea(e.duid);
+
+				if (ea)
+					e.mac = *ea;
 			}
 
-			ea = duid2ea(e.duid);
-
-			if (ea)
-				e.mac = *ea;
-
-			if (!strcmp(e.hostname, "-"))
-				e.hostname = NULL;
-
-			if (!strcmp(e.duid, "-"))
-				e.duid = NULL;
-
 			return &e;
 		}
 
-		fclose(lease_state.odhcpd_file);
-		lease_state.odhcpd_file = NULL;
+		lease_state.off++;
 	}
 
 	return NULL;
@@ -636,6 +659,20 @@ rpc_luci_parse_network_device_sys(const char *name, struct ifaddrs *ifaddr)
 	if (*p)
 		blobmsg_add_string(&blob, "master", p);
 
+	p = strstr(readstr("/sys/class/net/%s/uevent", name), "DEVTYPE=");
+	if (p) {
+		for (n = 0, p += strlen("DEVTYPE=");; n++) {
+			if (p[n] == '\0' || p[n] == '\n') {
+				p[n] = 0;
+				blobmsg_add_string(&blob, "devtype", p);
+				break;
+			}
+		}
+	}
+	else {
+		blobmsg_add_string(&blob, "devtype", "ethernet");
+	}
+
 	for (af = AF_INET; af != 0; af = (af == AF_INET) ? AF_INET6 : 0) {
 		a = blobmsg_open_array(&blob,
 		                       (af == AF_INET) ? "ipaddrs" : "ip6addrs");
@@ -686,6 +723,24 @@ rpc_luci_parse_network_device_sys(const char *name, struct ifaddrs *ifaddr)
 		blobmsg_add_u32(&blob, "ifindex", sll->sll_ifindex);
 
 		ifa_flags |= ifa->ifa_flags;
+
+		n = atoi(readstr("/sys/class/net/%s/iflink", name));
+
+		if (n != sll->sll_ifindex) {
+			for (ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
+				if (ifa->ifa_addr == NULL || ifa->ifa_addr->sa_family != AF_PACKET)
+					continue;
+
+				sll = (struct sockaddr_ll *)ifa->ifa_addr;
+
+				if (sll->sll_ifindex != n)
+					continue;
+
+				blobmsg_add_string(&blob, "parent", ifa->ifa_name);
+				break;
+			}
+		}
+
 		break;
 	}
 
@@ -779,11 +834,19 @@ static bool rpc_luci_get_iwinfo(struct blob_buf *buf, const char *devname,
 	struct iwinfo_crypto_entry crypto = {};
 	struct iwinfo_hardware_id ids = {};
 	const struct iwinfo_ops *iw;
-	void *iwlib, *o, *o2, *a;
-	int nret;
+	void *iwlib = NULL;
+	void *o, *o2, *a;
+	glob_t paths;
+	int nret, i;
 
 	if (!iw_backend || !iw_close || !iw_modenames) {
-		iwlib = dlopen("libiwinfo.so", RTLD_LAZY | RTLD_LOCAL);
+		if (glob("/usr/lib/libiwinfo.so*", 0, NULL, &paths) != 0)
+			return false;
+
+		for (i = 0; i < paths.gl_pathc && !iwlib; i++)
+			iwlib = dlopen(paths.gl_pathv[i], RTLD_LAZY | RTLD_LOCAL);
+
+		globfree(&paths);
 
 		if (!iwlib)
 			return false;
@@ -1672,60 +1735,6 @@ rpc_luci_get_board_json(struct ubus_context *ctx, struct ubus_object *obj,
 	return UBUS_STATUS_OK;
 }
 
-static int
-rpc_luci_get_dsl_status(struct ubus_context *ctx, struct ubus_object *obj,
-                        struct ubus_request_data *req, const char *method,
-                        struct blob_attr *msg)
-{
-	char line[128], *p, *s;
-	FILE *cmd;
-
-	cmd = popen("/etc/init.d/dsl_control lucistat", "r");
-
-	if (!cmd)
-		return UBUS_STATUS_NOT_FOUND;
-
-	blob_buf_init(&blob, 0);
-
-	while (fgets(line, sizeof(line), cmd)) {
-		if (strncmp(line, "dsl.", 4))
-			continue;
-
-		p = strchr(line, '=');
-
-		if (!p)
-			continue;
-
-		s = p + strlen(p) - 1;
-
-		while (s >= p && isspace(*s))
-			*s-- = 0;
-
-		*p++ = 0;
-
-		if (!strcmp(p, "nil"))
-			continue;
-
-		if (isdigit(*p)) {
-			blobmsg_add_u32(&blob, line + 4, strtoul(p, NULL, 0));
-		}
-		else if (*p == '"') {
-			s = p + strlen(p) - 1;
-
-			if (s >= p && *s == '"')
-				*s = 0;
-
-			blobmsg_add_string(&blob, line + 4, p + 1);
-		}
-	}
-
-	fclose(cmd);
-
-	ubus_send_reply(ctx, req, blob.head);
-	return UBUS_STATUS_OK;
-}
-
-
 enum {
 	RPC_L_FAMILY,
 	__RPC_L_MAX,
@@ -1836,7 +1845,6 @@ rpc_luci_api_init(const struct rpc_daemon_ops *o, struct ubus_context *ctx)
 		UBUS_METHOD_NOARG("getHostHints", rpc_luci_get_host_hints),
 		UBUS_METHOD_NOARG("getDUIDHints", rpc_luci_get_duid_hints),
 		UBUS_METHOD_NOARG("getBoardJSON", rpc_luci_get_board_json),
-		UBUS_METHOD_NOARG("getDSLStatus", rpc_luci_get_dsl_status),
 		UBUS_METHOD("getDHCPLeases", rpc_luci_get_dhcp_leases, rpc_get_leases_policy)
 	};
 

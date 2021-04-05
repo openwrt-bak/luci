@@ -93,6 +93,12 @@ return network.registerProtocol('openconnect', {
 		    certLoadPromise = null,
 		    o;
 
+		o = s.taboption('general', form.ListValue, 'vpn_protocol', _('VPN Protocol'));
+		o.value('anyconnect', 'Cisco AnyConnect SSL VPN');
+		o.value('nc', 'Juniper Network Connect');
+		o.value('gp', 'GlobalProtect SSL VPN');
+		o.value('pulse', 'Pulse Connect Secure SSL VPN');
+
 		o = s.taboption('general', form.Value, 'server', _('VPN Server'));
 		o.datatype = 'host(0)';
 
@@ -146,14 +152,6 @@ return network.registerProtocol('openconnect', {
 		o.write = function(section_id, value) {
 			return callSetCertificateFiles(section_id, null, null, sanitizeCert(value));
 		};
-
-		o = s.taboption('advanced', form.Flag, 'defaultroute', _('Default gateway'), _('If unchecked, no default route is configured'));
-		o.default = o.enabled;
-
-		o = s.taboption('advanced', form.Value, 'metric', _('Use gateway metric'));
-		o.placeholder = '0';
-		o.datatype    = 'uinteger';
-		o.depends('defaultroute', '1');
 
 		o = s.taboption('advanced', form.Value, 'mtu', _('Override MTU'));
 		o.optional = true;

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: luci-app-radicale 2\n"
-"PO-Revision-Date: 2020-10-09 00:10+0000\n"
+"PO-Revision-Date: 2021-03-11 08:13+0000\n"
 "Last-Translator: Artem <KovalevArtem.ru@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsradicale2/ru/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/auth.lua:8
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/logging.lua:4
@@ -118,7 +118,6 @@ msgstr ""
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/auth.lua:110
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/auth.lua:155
-#, fuzzy
 msgid "Encrypted Password"
 msgstr "Зашифрованный пароль"
 
@@ -144,7 +143,7 @@ msgstr ""
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/server.lua:29
 msgid "General Settings"
-msgstr "Основные настройки"
+msgstr "Общие настройки"
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/auth.lua:155
 msgid ""
@@ -378,7 +377,7 @@ msgstr ""
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/server.lua:52
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/server.lua:102
 msgid "SSL not available"
@@ -425,7 +424,7 @@ msgstr ""
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/server.lua:85
 msgid "This permanently deletes the cert, key, and configuration to use same."
-msgstr ""
+msgstr "Полное удаление сертификата, ключа и настроек вкладки меню cнизу."
 
 #: applications/luci-app-radicale2/luasrc/model/cbi/radicale2/auth.lua:182
 msgid "This permanently deletes the rights file and configuration to use same."

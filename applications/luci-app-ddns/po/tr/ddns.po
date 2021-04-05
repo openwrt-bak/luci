@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: luci-app-ddns 2.4.0-1\n"
 "POT-Creation-Date: 2016-01-30 11:07+0100\n"
-"PO-Revision-Date: 2020-09-29 14:41+0000\n"
-"Last-Translator: Mehmet Çetin <excom_zkko@hotmail.com>\n"
+"PO-Revision-Date: 2021-04-03 04:26+0000\n"
+"Last-Translator: Muhep Atasoy <muhepatasoy06@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openwrt/"
 "luciapplicationsddns/tr/>\n"
 "Language: tr\n"
@@ -11,11 +11,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.3-dev\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:430
 msgid "\"../\" not allowed in path for Security Reason."
-msgstr ""
+msgstr "Güvenlik nedeniyle yol içerisinde \"../\" öğesine izin verilmez."
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:462
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:531
@@ -190,7 +190,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:17
 msgid "Disabled"
-msgstr ""
+msgstr "Devre dışı"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:735
 msgid "Domain"
@@ -318,7 +318,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:510
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:632
 msgid "IPv4-Address"
-msgstr ""
+msgstr "IPv4 Adresi"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:931
 msgid "IPv6 address must be given in square brackets"
@@ -335,7 +335,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:512
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:634
 msgid "IPv6-Address"
-msgstr ""
+msgstr "IPv6 Adresi"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:443
 msgid ""
@@ -364,7 +364,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:262
 msgid "Information"
-msgstr ""
+msgstr "Bilgi"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:711
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:728
@@ -464,7 +464,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:214
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1141
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:498
 msgid "New DDns Service…"
@@ -662,7 +662,7 @@ msgstr ""
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:270
 msgid "State"
-msgstr ""
+msgstr "Bölge"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1103
 msgid "Status"
@@ -860,7 +860,7 @@ msgstr ""
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1017
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:1048
 msgid "minutes"
-msgstr ""
+msgstr "dakika"
 
 #: applications/luci-app-ddns/htdocs/luci-static/resources/view/ddns/overview.js:776
 msgid "or"
