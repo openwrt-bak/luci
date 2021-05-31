@@ -294,7 +294,7 @@ return view.extend({
 			network.getDSLModemType(),
 			network.getDevices(),
 			fs.lines('/etc/iproute2/rt_tables'),
-			fs.read('/usr/lib/opkg/info/netifd.control'),
+			L.resolveDefault(fs.read('/usr/lib/opkg/info/netifd.control')),
 			uci.changes()
 		]);
 	},
@@ -326,12 +326,14 @@ return view.extend({
 			tasks.push(uci.callAdd('network', 'device', null, {
 				'name': device_name,
 				'type': 'bridge',
-				'ports': L.toArray(ns.ifname)
+				'ports': L.toArray(ns.ifname),
+				'macaddr': ns.macaddr
 			}));
 
 			tasks.push(uci.callSet('network', ns['.name'], {
 				'type': '',
 				'ifname': '',
+				'macaddr': '',
 				'device': device_name
 			}));
 		});
@@ -503,10 +505,6 @@ return view.extend({
 				}, this);
 				o.write = function() {};
 
-				o = s.taboption('general', widgets.DeviceSelect, 'device', _('Device'));
-				o.nobridges = false;
-				o.optional = false;
-				o.network = ifc.getName();
 
 				proto_select = s.taboption('general', form.ListValue, 'proto', _('Protocol'));
 				proto_select.modalonly = true;
@@ -522,6 +520,11 @@ return view.extend({
 						.then(L.bind(m.render, m))
 						.then(L.bind(this.renderMoreOptionsModal, this, s.section));
 				}, this);
+
+				o = s.taboption('general', widgets.DeviceSelect, 'device', _('Device'));
+				o.nobridges = false;
+				o.optional = false;
+				o.network = ifc.getName();
 
 				o = s.taboption('general', form.Flag, 'auto', _('Bring up on boot'));
 				o.modalonly = true;
@@ -878,7 +881,6 @@ return view.extend({
 					o = s.children[i];
 
 					switch (o.option) {
-					case 'device':
 					case 'proto':
 					case 'auto':
 					case '_dhcp':
@@ -890,6 +892,7 @@ return view.extend({
 					case 'igmp_snooping':
 					case 'stp':
 					case 'type':
+					case 'device':
 						var deps = [];
 						for (var j = 0; j < protocols.length; j++) {
 							if (!protocols[j].isVirtual()) {
@@ -962,15 +965,18 @@ return view.extend({
 				return true;
 			};
 
+			proto = s2.option(form.ListValue, 'proto', _('Protocol'));
+			proto.validate = name.validate;
+
 			device = s2.option(widgets.DeviceSelect, 'device', _('Device'));
 			device.noaliases = false;
 			device.optional = false;
 
-			proto = s2.option(form.ListValue, 'proto', _('Protocol'));
-			proto.validate = name.validate;
-
 			for (var i = 0; i < protocols.length; i++) {
 				proto.value(protocols[i].getProtocol(), protocols[i].getI18n());
+
+				if (!protocols[i].isVirtual())
+					device.depends('proto', protocols[i].getProtocol());
 			}
 
 			m2.render().then(L.bind(function(nodes) {
