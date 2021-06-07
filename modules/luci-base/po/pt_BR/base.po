@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-06-10 03:41+0200\n"
-"PO-Revision-Date: 2021-06-06 14:38+0000\n"
+"PO-Revision-Date: 2021-06-07 14:45+0000\n"
 "Last-Translator: Wellington Terumi Uemura <wellingtonuemura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "openwrt/luci/pt_BR/>\n"
@@ -1504,21 +1504,25 @@ msgid ""
 "Configures the default router advertisement in <abbr title=\"Router "
 "Advertisement\">RA</abbr> messages."
 msgstr ""
+"Configura o anúncio padrão do roteador nas mensagens do <abbr title=\"Anúncio"
+" do roteador\">RA</abbr> ."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:752
 msgid ""
 "Configures the operation mode of the <abbr title=\"Router Advertisement"
 "\">RA</abbr> service on this interface."
 msgstr ""
+"Configura o modo de operação do serviço do <abbr title=\"Anúncio do "
+"roteador\">RA</abbr> nesta interface."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:856
 msgid "Configures the operation mode of the DHCPv6 service on this interface."
-msgstr ""
+msgstr "Configura o modo de operação do serviço DHCPv6 nesta interface."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:886
 msgid ""
 "Configures the operation mode of the NDP proxy service on this interface."
-msgstr ""
+msgstr "Configura o modo de operação do serviço proxy NDP nesta interface."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1273
 msgid "Configure…"
@@ -1778,7 +1782,7 @@ msgstr "Padrão %d"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:762
 msgid "Default router"
-msgstr ""
+msgstr "Roteador padrão"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:11
 msgid "Default state"
@@ -1858,7 +1862,7 @@ msgstr "Tema"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:703
 msgid "Designated master"
-msgstr ""
+msgstr "Mestre designado"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:384
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/iptables.js:71
@@ -2069,7 +2073,7 @@ msgstr "Não encaminhe buscas por endereço reverso das redes local"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:858
 msgid "Do not offer DHCPv6 service on this interface."
-msgstr ""
+msgstr "Não ofereça o serviço DHCPv6 nesta interface."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:208
 msgctxt "VLAN port state"
@@ -2081,6 +2085,8 @@ msgid ""
 "Do not proxy any <abbr title=\"Neighbour Discovery Protocol\">NDP</abbr> "
 "packets."
 msgstr ""
+"Não faça proxy em nenhum <abbr title=\"Neighbour Discovery Protocol\""
+">NDP</abbr>."
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/dhcp.js:25
 msgid "Do not send a hostname"
@@ -2091,6 +2097,8 @@ msgid ""
 "Do not send any <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</"
 "abbr> messages on this interface."
 msgstr ""
+"Não envie nenhuma mensagem de <abbr title=\"Anúncio do roteador, ICMPv6 Tipo "
+"134\">RA</abbr> nesta interface."
 
 #: modules/luci-base/htdocs/luci-static/resources/ui.js:2774
 msgid "Do you really want to delete \"%s\" ?"
@@ -2268,7 +2276,7 @@ msgstr "Ativar <abbr title=\"Spanning Tree Protocol\">STP</abbr>"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:773
 msgid "Enable <abbr title=\"Stateless Address Auto Config\">SLAAC</abbr>"
-msgstr ""
+msgstr "Ative o <abbr title=\"Stateless Address Auto Config\">SLAAC</abbr>"
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:174
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/connections.js:367
@@ -2375,7 +2383,7 @@ msgstr ""
 "a velocidade da rede."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:659
-msgid "Enable promiscious mode"
+msgid "Enable promiscuous mode"
 msgstr "Ative o modo promíscuo"
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:71
@@ -2814,6 +2822,10 @@ msgid ""
 "Advertisement, Type 136\">NA</abbr> messages between the designated master "
 "interface and downstream interfaces."
 msgstr ""
+"Encaminhe as mensagens <abbr title=\"Neighbour Discovery Protocol\">NDP</"
+"abbr> <abbr title=\"Neighbour Solicitation, Type 135\">NS</abbr> and <abbr "
+"title=\"Neighbour Advertisement, Type 136\">NA</abbr> entre a interface "
+"principal que foi designada e as interfaces \"downstream\"."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:758
 msgid ""
@@ -2821,6 +2833,9 @@ msgid ""
 "messages received on the designated master interface to downstream "
 "interfaces."
 msgstr ""
+"Encaminhe as mensagens <abbr title=\"Router Advertisement, ICMPv6 Type 134\""
+">RA</abbr> recebidas na interface principal para as interfaces \"downstream\""
+"."
 
 #: protocols/luci-proto-relay/htdocs/luci-static/resources/protocol/relay.js:164
 msgid "Forward DHCP traffic"
@@ -2831,6 +2846,8 @@ msgid ""
 "Forward DHCPv6 messages between the designated master interface and "
 "downstream interfaces."
 msgstr ""
+"Encaminhe as mensagens DHCPv6 entre a interface principal e as interfaces "
+"\"downstream\"."
 
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/50_dsl.js:28
 msgid "Forward Error Correction Seconds (FECS)"
@@ -3233,6 +3250,9 @@ msgid "IPv4 Upstream"
 msgstr "Enlace IPv4 Superior"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:178
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:37
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:87
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:155
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:162
 msgid "IPv4 address"
 msgstr "Endereço IPv4"
@@ -3246,6 +3266,7 @@ msgid "IPv4 broadcast"
 msgstr "Broadcast IPv4"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:165
 msgid "IPv4 gateway"
 msgstr "Roteador padrão IPv4"
 
@@ -3274,16 +3295,6 @@ msgstr "Tamanho do prefixo IPv4"
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:84
 msgid "IPv4+IPv6"
 msgstr "IPv4+IPv6"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:37
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:87
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:155
-msgid "IPv4-Address"
-msgstr "Endereço IPv4"
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:165
-msgid "IPv4-Gateway"
-msgstr "Gateway IPv4"
 
 #: modules/luci-compat/luasrc/model/network/proto_ipip.lua:9
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:10
@@ -3324,7 +3335,7 @@ msgstr "Vizinhos IPv6"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:623
 msgid "IPv6 RA Settings"
-msgstr ""
+msgstr "Configurações do IPv6 RA"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:622
 msgid "IPv6 Settings"
@@ -3341,6 +3352,9 @@ msgid "IPv6 Upstream"
 msgstr "Enlace IPv6 Superior"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:183
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:56
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:126
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:174
 msgid "IPv6 address"
 msgstr "Endereço IPv6"
 
@@ -3395,12 +3409,6 @@ msgstr "Sufixo IPv6"
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:51
 msgid "IPv6 support"
 msgstr "Suporte ao IPv6"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:56
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:126
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:174
-msgid "IPv6-Address"
-msgstr "Endereço IPv6"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:101
 msgid "IPv6-PD"
@@ -3623,7 +3631,7 @@ msgstr "Interface"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:706
 msgid "Interface \"%h\" is already marked as designated master."
-msgstr ""
+msgstr "A interface \"%h\" já está marcada como mestre designado."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:62
 msgid "Interface %q device auto-migrated from %q to %q."
@@ -3905,7 +3913,7 @@ msgstr "Aprenda"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:894
 msgid "Learn routes"
-msgstr ""
+msgstr "Aprenda as rotas"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:522
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:667
@@ -4115,7 +4123,7 @@ msgstr "Endereço IPv4 local"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:872
 msgid "Local IPv6 DNS server"
-msgstr ""
+msgstr "Servidor DNS IPv6 local"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:46
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:53
@@ -4238,6 +4246,10 @@ msgstr "MAC"
 msgid "MAC Address"
 msgstr "Endereço MAC"
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1050
+msgid "MAC Address Filter"
+msgstr "Filtro de Endereço MAC"
+
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
 msgid "MAC Address For The Actor"
 msgstr "Endereço MAC Para o Ator"
@@ -4248,9 +4260,6 @@ msgid "MAC VLAN"
 msgstr "VLAN MAC"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:622
-msgid "MAC address"
-msgstr "Endereço MAC"
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:38
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2116
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:56
@@ -4258,12 +4267,8 @@ msgstr "Endereço MAC"
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:229
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:156
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:175
-msgid "MAC-Address"
+msgid "MAC address"
 msgstr "Endereço MAC"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1050
-msgid "MAC-Address Filter"
-msgstr "Filtro de Endereço MAC"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:953
 msgid "MAC-Filter"
@@ -4383,6 +4388,9 @@ msgid ""
 "Maximum time allowed between sending unsolicited <abbr title=\"Router "
 "Advertisement, ICMPv6 Type 134\">RA</abbr>. Default is 600 seconds."
 msgstr ""
+"O tempo máximo permitido entre o envio não solicitado so <abbr title="
+"\"Anúncio do roteador, ICMPv6 Tipo 134\">RA</abbr>. O tempo predefinido é de "
+"600 segundos."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:913
 msgid "Maximum transmit power"
@@ -4469,6 +4477,9 @@ msgid ""
 "Minimum time allowed between sending unsolicited <abbr title=\"Router "
 "Advertisement, ICMPv6 Type 134\">RA</abbr>. Default is 200 seconds."
 msgstr ""
+"O tempo mínimo permitido entre o envio não solicitado do <abbr title="
+"\"Anúncio do roteador, ICMPv6 Tipo 134\">RA</abbr>. O tempo predefinido é de "
+"200 segundos."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/switch.js:202
 msgid "Mirror monitor port"
@@ -4728,7 +4739,7 @@ msgstr "O dispositivo de rede não está presente"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:414
 msgid "Network ifname configuration migration"
-msgstr ""
+msgstr "Migração da configuração do ifname da rede"
 
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:57
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:62
@@ -4978,7 +4989,7 @@ msgstr "Senha Ofuscada"
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:67
 #: protocols/luci-proto-pppossh/htdocs/luci-static/resources/protocol/pppossh.js:93
-msgid "Obtain IPv6-Address"
+msgid "Obtain IPv6 address"
 msgstr "Obter Endereço IPv6"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:18
@@ -5058,18 +5069,25 @@ msgid ""
 "configured and active, otherwise disable <abbr title=\"Neighbour Discovery "
 "Protocol\">NDP</abbr> proxying."
 msgstr ""
+"Opere no modo de <em>distribuição</em> caso uma interface master esteja "
+"configurada e ativa, caso contrário desative o proxy <abbr title=\"Neighbour "
+"Discovery Protocol\">NDP</abbr>."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:711
 msgid ""
 "Operate in <em>relay mode</em> if a designated master interface is "
 "configured and active, otherwise fall back to <em>server mode</em>."
 msgstr ""
+"Opere no modo de <em>distribuição</em> caso uma interface master esteja "
+"configurada e ativa, caso contrário, recue para o modo <em>servidor</em>."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:713
 msgid ""
 "Operate in <em>relay mode</em> if an upstream IPv6 prefix is present, "
 "otherwise disable service."
 msgstr ""
+"Opere no modo <em>distribuição</em>, caso um prefixo \"IPv6 upstream\" "
+"esteja presente, caso contrário, desative o serviço."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:906
 msgid "Operating frequency"
@@ -5703,6 +5721,8 @@ msgid ""
 "Provide a DHCPv6 server on this interface and reply to DHCPv6 solicitations "
 "and requests."
 msgstr ""
+"Forneça um servidor DHCPv6 nesta interface e também responda às solicitações "
+"e pedidos deste protocolo."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:849
 msgid "Provide new network"
@@ -5928,7 +5948,7 @@ msgstr "Remover"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:1277
 msgid "Remove related device settings from the configuration"
-msgstr ""
+msgstr "Remova as configurações do dispositivo relacionados à configuração"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1961
 msgid "Replace wireless configuration"
@@ -6173,6 +6193,9 @@ msgid ""
 "Router Lifetime published in <abbr title=\"Router Advertisement, ICMPv6 Type "
 "134\">RA</abbr> messages. Maximum is 9000 seconds."
 msgstr ""
+"O tempo de vida útil do roteador publicada nas mensagens do <abbr title="
+"\"Anúncio do roteador, ICMPv6 Tipo 134\"> RA </abbr>. O máximo são 9.000 "
+"segundos."
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/password.js:46
 #: modules/luci-mod-system/root/usr/share/luci/menu.d/luci-mod-system.json:26
@@ -6327,6 +6350,8 @@ msgid ""
 "Send <abbr title=\"Router Advertisement, ICMPv6 Type 134\">RA</abbr> "
 "messages advertising this device as IPv6 router."
 msgstr ""
+"Envie mensagens do <abbr title=\"Anúncio do roteador, ICMPv6 Tipo 134\">RA</"
+"abbr> anunciando este dispositivo como sendo um roteador IPv6."
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:690
 msgid "Send ICMP redirects"
@@ -6808,7 +6833,9 @@ msgstr ""
 msgid "Specify a TOS (Type of Service)."
 msgstr "Especifique um Tipo de Serviço (TOS)."
 
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:79
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:79
 msgid ""
 "Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
 "header inherits the value of the inner header) or an hexadecimal value "
@@ -6818,17 +6845,6 @@ msgstr ""
 "cabeçalho externo herda o valor do cabeçalho interno) ou um valor "
 "hexadecimal <code>00..FF</code> (opcional)."
 
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:74
-msgid ""
-"Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
-"header inherits the value of the inner header), or an hexadecimal value "
-"<code>00..FF</code> (optional)."
-msgstr ""
-"Especifique um TOS (Tipo de Serviço). Pode ser <code>herdar</code> (o "
-"cabeçalho externo herda o valor do cabeçalho interno), ou um valor "
-"hexadecimal <code>00..FF</code> (opcional)."
-
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:69
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:79
@@ -6839,6 +6855,7 @@ msgstr ""
 "Defina um TTL (Time to Live) para o pacote de encapsulamento diferente do "
 "padrão (64) (opcional)."
 
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:58
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:62
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:57
@@ -6849,7 +6866,6 @@ msgstr ""
 "Especifica o tempo de vida (<abbr title=\"Time to Live\">TTL</abbr>) para os "
 "pacotes encapsulados ao invés do padrão (64)."
 
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:79
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:84
 msgid ""
 "Specify a Traffic Class. Can be <code>inherit</code> (the outer header "
@@ -8113,14 +8129,14 @@ msgstr "Utilizar certificados de sistema para túnel interno"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:412
 msgid ""
-"Use the <em>Add</em> Button to add a new lease entry. The <em>MAC-Address</"
-"em> identifies the host, the <em>IPv4-Address</em> specifies the fixed "
+"Use the <em>Add</em> Button to add a new lease entry. The <em>MAC address</"
+"em> identifies the host, the <em>IPv4 address</em> specifies the fixed "
 "address to use, and the <em>Hostname</em> is assigned as a symbolic name to "
 "the requesting host. The optional <em>Lease time</em> can be used to set non-"
 "standard host-specific lease time, e.g. 12h, 3d or infinite."
 msgstr ""
 "Use o botão <em>Adicionar</em> para adicionar uma nova entrada de alocação. "
-"O endereço <em>MAC-Address</em> identifica o equipamento, o endereço "
+"O endereço <em>MAC address</em> identifica o equipamento, o endereço "
 "<em>Endereço IPv4</em> especifica o endereço fixo para usar e o <em>Nome do "
 "equipamento</em> é designado como nome simbólico (DNS) para o equipamento "
 "requisitante. O <em>Tempo de concessão</em> opcional pode ser usado para "
@@ -9052,6 +9068,15 @@ msgstr "sim"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« Voltar"
+
+#~ msgid ""
+#~ "Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
+#~ "header inherits the value of the inner header), or an hexadecimal value "
+#~ "<code>00..FF</code> (optional)."
+#~ msgstr ""
+#~ "Especifique um TOS (Tipo de Serviço). Pode ser <code>herdar</code> (o "
+#~ "cabeçalho externo herda o valor do cabeçalho interno), ou um valor "
+#~ "hexadecimal <code>00..FF</code> (opcional)."
 
 #~ msgid ""
 #~ "<ul style=\"list-style-type:none;\"> <li><strong>server mode</strong>: "

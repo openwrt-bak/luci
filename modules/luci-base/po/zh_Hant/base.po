@@ -2264,7 +2264,7 @@ msgid ""
 msgstr "啟用所有 CPU 的封包控制。 可能會增加或減少網路速度。"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:659
-msgid "Enable promiscious mode"
+msgid "Enable promiscuous mode"
 msgstr ""
 
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:71
@@ -3094,6 +3094,9 @@ msgid "IPv4 Upstream"
 msgstr "IPv4 上游"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:178
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:37
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:87
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:155
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:162
 msgid "IPv4 address"
 msgstr "IPv4位址"
@@ -3107,6 +3110,7 @@ msgid "IPv4 broadcast"
 msgstr "IPv4 廣播"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:180
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:165
 msgid "IPv4 gateway"
 msgstr "IPv4閘道"
 
@@ -3135,16 +3139,6 @@ msgstr "IPv4前綴長度"
 #: protocols/luci-proto-ncm/htdocs/luci-static/resources/protocol/ncm.js:84
 msgid "IPv4+IPv6"
 msgstr "IPv4+IPv6"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:37
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:87
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:155
-msgid "IPv4-Address"
-msgstr "IPv4 位址"
-
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:165
-msgid "IPv4-Gateway"
-msgstr "IPV4-匝道器"
 
 #: modules/luci-compat/luasrc/model/network/proto_ipip.lua:9
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:10
@@ -3200,6 +3194,9 @@ msgid "IPv6 Upstream"
 msgstr "IPv6 上游"
 
 #: modules/luci-base/htdocs/luci-static/resources/protocol/static.js:183
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:56
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:126
+#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:174
 msgid "IPv6 address"
 msgstr "IPv6位址"
 
@@ -3254,12 +3251,6 @@ msgstr "IPv6 尾碼"
 #: protocols/luci-proto-sstp/htdocs/luci-static/resources/protocol/sstp.js:51
 msgid "IPv6 support"
 msgstr "IPv6 支援"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:56
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/40_dhcp.js:126
-#: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:174
-msgid "IPv6-Address"
-msgstr "IPv6 位址"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/interfaces.js:101
 msgid "IPv6-PD"
@@ -4048,6 +4039,10 @@ msgstr "MAC"
 msgid "MAC Address"
 msgstr ""
 
+#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1050
+msgid "MAC Address Filter"
+msgstr "MAC 位址過濾"
+
 #: protocols/luci-proto-bonding/htdocs/luci-static/resources/protocol/bonding.js:251
 msgid "MAC Address For The Actor"
 msgstr "將扮演的MAC位址"
@@ -4058,9 +4053,6 @@ msgid "MAC VLAN"
 msgstr ""
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/tools/network.js:622
-msgid "MAC address"
-msgstr ""
-
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:38
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:2116
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/30_network.js:56
@@ -4068,12 +4060,8 @@ msgstr ""
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/60_wifi.js:229
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:156
 #: modules/luci-mod-status/htdocs/luci-static/resources/view/status/routes.js:175
-msgid "MAC-Address"
+msgid "MAC address"
 msgstr "MAC 位址"
-
-#: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:1050
-msgid "MAC-Address Filter"
-msgstr "MAC 位址過濾"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/wireless.js:953
 msgid "MAC-Filter"
@@ -4772,7 +4760,7 @@ msgstr "混淆密碼"
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pppoe.js:54
 #: protocols/luci-proto-ppp/htdocs/luci-static/resources/protocol/pptp.js:67
 #: protocols/luci-proto-pppossh/htdocs/luci-static/resources/protocol/pppossh.js:93
-msgid "Obtain IPv6-Address"
+msgid "Obtain IPv6 address"
 msgstr "取得IPv6-位址"
 
 #: modules/luci-mod-system/htdocs/luci-static/resources/view/system/led-trigger/default-on.js:18
@@ -6511,7 +6499,9 @@ msgstr "指定哪個實體界面是主要裝置。可用時它將始終是活躍
 msgid "Specify a TOS (Type of Service)."
 msgstr "指定一個TOS (服務類型)."
 
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:79
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:79
 msgid ""
 "Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
 "header inherits the value of the inner header) or an hexadecimal value "
@@ -6520,16 +6510,6 @@ msgstr ""
 "指定一個TOS (服務類型). 可以是<code> inherit </code> (外部標頭繼承內部標頭的"
 "值) 或十六進制值<code> 00..FF </code>(可選的)."
 
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:74
-msgid ""
-"Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
-"header inherits the value of the inner header), or an hexadecimal value "
-"<code>00..FF</code> (optional)."
-msgstr ""
-"指定一個TOS (服務類型). 可以是<code> inherit </code> (外部標頭繼承內部標頭的"
-"值) 或十六進制值<code> 00..FF </code>(可選的)."
-
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:69
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gretap.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:74
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:79
@@ -6538,6 +6518,7 @@ msgid ""
 "default (64) (optional)."
 msgstr "為封裝封包指定TTL(存活時間), 而不是預設值(64) (可選的)."
 
+#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/gre.js:69
 #: protocols/luci-proto-ipip/htdocs/luci-static/resources/protocol/ipip.js:58
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan.js:62
 #: protocols/luci-proto-vxlan/htdocs/luci-static/resources/protocol/vxlan6.js:57
@@ -6546,7 +6527,6 @@ msgid ""
 "default (64)."
 msgstr "為封裝封包指定TTL(存活時間), 而不是預設值(64)."
 
-#: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6.js:79
 #: protocols/luci-proto-gre/htdocs/luci-static/resources/protocol/grev6tap.js:84
 msgid ""
 "Specify a Traffic Class. Can be <code>inherit</code> (the outer header "
@@ -7714,8 +7694,8 @@ msgstr "對 inner-tunnel 使用系統憑證"
 
 #: modules/luci-mod-network/htdocs/luci-static/resources/view/network/dhcp.js:412
 msgid ""
-"Use the <em>Add</em> Button to add a new lease entry. The <em>MAC-Address</"
-"em> identifies the host, the <em>IPv4-Address</em> specifies the fixed "
+"Use the <em>Add</em> Button to add a new lease entry. The <em>MAC address</"
+"em> identifies the host, the <em>IPv4 address</em> specifies the fixed "
 "address to use, and the <em>Hostname</em> is assigned as a symbolic name to "
 "the requesting host. The optional <em>Lease time</em> can be used to set non-"
 "standard host-specific lease time, e.g. 12h, 3d or infinite."
@@ -8624,6 +8604,14 @@ msgstr "是"
 #: modules/luci-compat/luasrc/view/cbi/delegator.htm:20
 msgid "« Back"
 msgstr "« 倒退"
+
+#~ msgid ""
+#~ "Specify a TOS (Type of Service). Can be <code>inherit</code> (the outer "
+#~ "header inherits the value of the inner header), or an hexadecimal value "
+#~ "<code>00..FF</code> (optional)."
+#~ msgstr ""
+#~ "指定一個TOS (服務類型). 可以是<code> inherit </code> (外部標頭繼承內部標頭"
+#~ "的值) 或十六進制值<code> 00..FF </code>(可選的)."
 
 #~ msgid "Announced DNS servers"
 #~ msgstr "發布的 DNS 伺服器"
